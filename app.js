@@ -1,10 +1,25 @@
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send("Server Running");
+const pool = require("./config/db");
+
+app.get("/", (req, res) => {
+  res.send("Verdant Tech Portfolio Backend is running!");
 });
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+const PORT = 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
+app.get("/test-db", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM public.services");
+    res.json(result.rows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Database error" });
+    }
+    });
