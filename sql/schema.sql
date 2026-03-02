@@ -1,0 +1,39 @@
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS team_members;
+DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS services;
+
+CREATE TABLE services (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(120) NOT NULL,
+  description TEXT NOT NULL,
+  icon VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE projects (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(140) NOT NULL,
+  description TEXT NOT NULL,
+  tech_stack TEXT NOT NULL,
+  image VARCHAR(255),
+  demo_link VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE team_members (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  role VARCHAR(120) NOT NULL,
+  image VARCHAR(255),
+  bio TEXT
+);
+
+CREATE TABLE messages (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(160) NOT NULL,
+  company VARCHAR(160),
+  message TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
