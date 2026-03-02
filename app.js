@@ -1,25 +1,32 @@
-require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
 
-const pool = require("./config/db");
+app.use(cors()); //  allow frontend access
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("Verdant Tech Portfolio Backend is running!");
+// Routes
+const adminRoutes = require("./routes/adminRoutes");
+const messageRoutes = require("./routes/messageRoutes");
+const projectRoutes = require("./routes/projectRoutes");
+const serviceRoutes = require("./routes/serviceRoutes");
+const teamRoutes = require("./routes/teamRoutes");
+
+app.use("/api/admin", adminRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/projects", projectRoutes);
+app.use("/api/services", serviceRoutes);
+app.use("/api/team", teamRoutes);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Internal Server Error" });
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-app.get("/test-db", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT * FROM public.services");
-    res.json(result.rows);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Database error" });
-    }
-    });

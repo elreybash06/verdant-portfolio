@@ -12,5 +12,11 @@ const create = async ({ name, email, company, message }) => {
   );
   return rows[0];
 };
-
-module.exports = { getAll, create };
+const removeById = async (id) => {
+  const { rowCount } = await pool.query(
+    "DELETE FROM messages WHERE id = $1",
+    [id]
+  );
+  return rowCount > 0;
+};
+module.exports = { getAll, create, removeById };

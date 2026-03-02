@@ -15,5 +15,24 @@ const submitContact = async (req, res, next) => {
 const getMessages = async (req, res, next) => {
   try { res.json(await messageModel.getAll()); } catch (e) { next(e); }
 };
+const deleteMessage = async (req, res, next) => {
+  try {
+    const id = Number.parseInt(req.params.id, 10);
 
-module.exports = { submitContact, getMessages };
+    if (!Number.isInteger(id) || id <= 0) {
+      return res.status(400).json({ error: "Invalid message id" });
+    }
+
+    const deleted = await messageModel.removeById(id);
+
+    if (!deleted) {
+      return res.status(404).json({ error: "Message not found" });
+    }
+
+    res.json({ message: "Message deleted successfully" });
+
+  } catch (e) {
+    next(e);
+  }
+};
+module.exports = { submitContact, getMessages, deleteMessage };
