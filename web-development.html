@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Development - Verdant Technologies</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    .project-detail {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        margin-top: 80px;
+    }
+    
+    .project-detail h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .project-detail img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 30px 0;
+    }
+    
+    .project-detail p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #555;
+        margin: 20px 0;
+    }
+    
+    .project-section h2 {
+        font-size: 1.8em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .features-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .features-list li {
+        padding: 12px 0;
+        padding-left: 30px;
+        position: relative;
+        color: #555;
+        font-size: 1.05em;
+        line-height: 1.6;
+    }
+    
+    .features-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #22c55e;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 30px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-size: 1.05em;
+    }
+    
+    .back-link:hover {
+        text-decoration: underline;
+    }
+    
+    /* Success Stories Cards Styles */
+    .success-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+    
+    .success-card {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        padding: 35px 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+        border: 2px solid #22c55e;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .success-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .success-card:hover::before {
+        left: 100%;
+    }
+    
+    .success-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+        border-color: #16a34a;
+    }
+    
+    .success-icon {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .success-title {
+        font-size: 1.35em;
+        font-weight: 700;
+        color: #16a34a;
+        margin-bottom: 10px;
+    }
+    
+    .success-description {
+        font-size: 0.95em;
+        color: #555;
+        line-height: 1.6;
+        flex-grow: 1;
+    }
+    
+    .success-metric {
+        font-size: 1.8em;
+        font-weight: 900;
+        color: #22c55e;
+        margin-top: 15px;
+    }
+    
+    .success-card:hover .success-icon {
+        animation: bounce-icon 0.6s ease;
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    @keyframes bounce-icon {
+        0%, 100% {
+            transform: scale(1) translateY(0);
+        }
+        50% {
+            transform: scale(1.2) translateY(-5px);
+        }
+    }
+    
+    @keyframes slide-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .success-card {
+        animation: slide-in 0.6s ease forwards;
+    }
+    
+    .success-card:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+    
+    .success-card:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+    
+    .success-card:nth-child(4) {
+        animation-delay: 0.3s;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">VerdantTech<span></span></div>
+
+    <nav>
+        <a href="project2.html">Home</a>
+        <a href="project2.html#services">Services</a>
+        <a href="project2.html#contact">Contact</a>
+        <button class="main-btn">Main Site</button>
+        <button class="theme-btn" id="themeToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </nav>
+</header>
+
+<!-- Project Detail Section -->
+<div class="project-detail">
+    <a href="project2.html" class="back-link">← Back to Projects</a>
+    
+    <h1>Web Development</h1>
+    <p><strong>Building Responsive, User-Friendly Websites and Applications</strong></p>
+    
+    <img src="https://i.pinimg.com/736x/74/94/e7/7494e727ccc83c930132ae53c120cf2d.jpg" alt="Web Development">
+    
+    <div class="project-section">
+        <h2>Overview</h2>
+        <p>
+            Our web development services deliver cutting-edge digital solutions tailored to your business needs. 
+            From responsive websites to complex web applications, we combine stunning design with robust functionality 
+            to create digital experiences that engage users and drive business growth.
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Our Expertise</h2>
+        <p>
+            We specialize in creating web solutions across the full spectrum of technologies and platforms:
+        </p>
+        <ul class="features-list">
+            <li>Responsive website design for all devices and screen sizes</li>
+            <li>Frontend development with React, Vue.js, and Angular</li>
+            <li>Backend development with Node.js, Python, and Java</li>
+            <li>Database design and optimization</li>
+            <li>API development and integration</li>
+            <li>E-commerce solutions and payment integration</li>
+            <li>Content Management Systems (CMS)</li>
+            <li>Progressive Web Apps (PWA)</li>
+        </ul>
+    </div>
+    
+    <div class="project-section">
+        <h2>Our Process</h2>
+        <p>
+            We follow a client-centric approach that ensures your vision becomes reality:
+        </p>
+        <ul class="features-list">
+            <li>Discovery and requirement gathering</li>
+            <li>Wireframing and UI/UX design</li>
+            <li>Agile development with regular iterations</li>
+            <li>Comprehensive testing and quality assurance</li>
+            <li>Deployment and ongoing support</li>
+        </ul>
+    </div>
+    
+    <div class="project-section">
+        <h2>Client Success Stories</h2>
+        
+        <div class="success-grid">
+            <div class="success-card">
+                <div class="success-icon">🎯</div>
+                <div class="success-title">Projects Delivered</div>
+                <div class="success-description">Successful web projects delivered across diverse industries worldwide</div>
+                <div class="success-metric" data-target="150">0</div>
+                <div style="font-size: 0.9em; color: #666; margin-top: 5px;">+</div>
+            </div>
+            
+            <div class="success-card">
+                <div class="success-icon">⭐</div>
+                <div class="success-title">Client Satisfaction</div>
+                <div class="success-description">Consistent satisfaction with our web development services and support</div>
+                <div class="success-metric" data-target="98">0</div>
+                <div style="font-size: 0.9em; color: #666; margin-top: 5px;">%</div>
+            </div>
+            
+            <div class="success-card">
+                <div class="success-icon">📈</div>
+                <div class="success-title">Conversion Boost</div>
+                <div class="success-description">Average increase in conversion rates for our client websites</div>
+                <div class="success-metric" data-target="30">0</div>
+                <div style="font-size: 0.9em; color: #666; margin-top: 5px;">%</div>
+            </div>
+            
+            <div class="success-card">
+                <div class="success-icon">🛡️</div>
+                <div class="success-title">24/7 Support</div>
+                <div class="success-description">Round-the-clock support and maintenance services for all clients</div>
+                <div class="success-metric" data-target="100">0</div>
+                <div style="font-size: 0.9em; color: #666; margin-top: 5px;">%</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-section">
+        <h2>Technologies We Use</h2>
+        <p>
+            Frontend: HTML5, CSS3, JavaScript, TypeScript, React, Vue.js, Angular, Tailwind CSS<br>
+            Backend: Node.js, Express, Django, Flask, Java, Spring Boot, PHP, Laravel<br>
+            Databases: PostgreSQL, MongoDB, MySQL, Firebase, DynamoDB<br>
+            Cloud Platforms: AWS, Google Cloud, Azure, Heroku
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Why Choose Us</h2>
+        <p>
+            We combine creative design with technical excellence to deliver web solutions that not only look great 
+            but perform exceptionally. Our team stays updated with the latest technologies and best practices, ensuring 
+            your project is built with future-ready solutions. We're committed to delivering on time, within budget, 
+            and exceeding your expectations.
+        </p>
+    </div>
+</div>
+
+<!-- Orange Links Section -->
+<section class="orange-section">
+    <h2>Explore More Projects</h2>
+    <div class="links">
+        
+        <a href="mobile-app.html">Mobile App Development</a>
+        <a href="graphics-design.html">Graphics Design</a>
+        <a href="iot-platforms.html">IoT Platforms</a>
+        <a href="saas-development.html">SaaS Development</a>
+        <a href="ui-ux-design.html">UI/UX Design</a>
+    
+    </div>
+</section>
+
+<!-- Footer -->
+<footer style="background: #f8f9fa; padding: 30px 20px; text-align: center; margin-top: 60px; color: #666;">
+    <p>&copy; 2026 Verdant Technologies. All rights reserved.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.querySelector('.orange-section');
+    if (banner) {
+        setTimeout(() => {
+            banner.classList.add('visible');
+            banner.querySelectorAll('a').forEach((a, i) => {
+                setTimeout(() => a.classList.add('visible'), i * 100);
+            });
+        }, 100);
+    }
+});
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const banner = document.querySelector('.orange-section');
+        if (banner) {
+            setTimeout(() => {
+                banner.classList.add('visible');
+                banner.querySelectorAll('a').forEach((a, i) => {
+                    setTimeout(() => a.classList.add('visible'), i * 100);
+                });
+            }, 100);
+        }
+    });
+    // Animate success card metrics
+    function animateCounter(element, target) {
+        let current = 0;
+        const duration = 2000;
+        const startTime = Date.now();
+        
+        function update() {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            current = Math.floor(target * progress);
+            element.textContent = current.toLocaleString();
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = target.toLocaleString();
+            }
+        }
+        
+        update();
+    }
+    
+    // Trigger counter animation when cards appear
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.animated) {
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                animateCounter(entry.target, target);
+                entry.target.animated = true;
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.success-metric').forEach(card => {
+        observer.observe(card);
+    });
+    
+    // Add hover glow effect to cards
+    document.querySelectorAll('.success-card').forEach(card => {
+        card.addEventListener('mouseenter', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const glow = document.createElement('div');
+            glow.style.position = 'absolute';
+            glow.style.left = x + 'px';
+            glow.style.top = y + 'px';
+            glow.style.width = '20px';
+            glow.style.height = '20px';
+            glow.style.background = 'radial-gradient(circle, rgba(34, 197, 94, 0.8), transparent)';
+            glow.style.borderRadius = '50%';
+            glow.style.pointerEvents = 'none';
+            glow.style.animation = 'glow-expand 0.6s ease-out';
+            glow.style.zIndex = '10';
+            
+            this.appendChild(glow);
+            
+            setTimeout(() => glow.remove(), 600);
+        });
+    });
+    
+    // Add glow expand animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes glow-expand {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+<script>
+    // Theme persistence across pages
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme on page load
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
+    
+    // Toggle theme on button click
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+        });
+    }
+</script>
+
+</body>
+
+</html>

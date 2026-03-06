@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graphics Design - Verdant Technologies</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    .project-detail {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        margin-top: 80px;
+    }
+    
+    .project-detail h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .project-detail img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 30px 0;
+    }
+    
+    .project-detail p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #555;
+        margin: 20px 0;
+    }
+    
+    .project-section h2 {
+        font-size: 1.8em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .features-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .features-list li {
+        padding: 12px 0;
+        padding-left: 30px;
+        position: relative;
+        color: #555;
+        font-size: 1.05em;
+        line-height: 1.6;
+    }
+    
+    .features-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #22c55e;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 30px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-size: 1.05em;
+    }
+    
+    .back-link:hover {
+        text-decoration: underline;
+    }
+    
+    /* Success Stories Cards Styles */
+    .success-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+    
+    .success-card {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        padding: 35px 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+        border: 2px solid #22c55e;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .success-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .success-card:hover::before {
+        left: 100%;
+    }
+    
+    .success-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+        border-color: #16a34a;
+    }
+    
+    .success-icon {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .success-title {
+        font-size: 1.35em;
+        font-weight: 700;
+        color: #16a34a;
+        margin-bottom: 10px;
+    }
+    
+    .success-description {
+        font-size: 0.95em;
+        color: #555;
+        line-height: 1.6;
+        flex-grow: 1;
+    }
+    
+    .success-metric {
+        font-size: 1.8em;
+        font-weight: 900;
+        color: #22c55e;
+        margin-top: 15px;
+    }
+    
+    .success-card:hover .success-icon {
+        animation: bounce-icon 0.6s ease;
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    @keyframes bounce-icon {
+        0%, 100% {
+            transform: scale(1) translateY(0);
+        }
+        50% {
+            transform: scale(1.2) translateY(-5px);
+        }
+    }
+    
+    @keyframes slide-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .success-card {
+        animation: slide-in 0.6s ease forwards;
+    }
+    
+    .success-card:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+    
+    .success-card:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+    
+    .success-card:nth-child(4) {
+        animation-delay: 0.3s;
+    }
+
+    /* Impact Cards Styles */
+    .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 30px 0;
+    }
+
+    .impact-card {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        padding: 40px 25px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+        border: 2px solid #22c55e;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .impact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .impact-card:hover::before {
+        left: 100%;
+    }
+
+    .impact-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(34, 197, 94, 0.35);
+        border-color: #16a34a;
+    }
+
+    .impact-number {
+        font-size: 3.5em;
+        font-weight: 900;
+        color: #16a34a;
+        line-height: 1;
+        margin: 15px 0;
+        font-family: 'Arial', sans-serif;
+        letter-spacing: -2px;
+    }
+
+    .impact-label {
+        font-size: 1em;
+        color: #333;
+        font-weight: 600;
+        margin-top: 15px;
+        line-height: 1.5;
+    }
+
+    .impact-card:hover .impact-number {
+        animation: pulse-impact 0.6s ease;
+    }
+
+    @keyframes pulse-impact {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.15);
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">VerdantTech<span></span></div>
+
+    <nav>
+        <a href="project2.html">Home</a>
+        <a href="project2.html#services">Services</a>
+        <a href="project2.html#contact">Contact</a>
+        <button class="main-btn">Main Site</button>
+        <button class="theme-btn" id="themeToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </nav>
+</header>
+
+<!-- Project Detail Section -->
+<div class="project-detail">
+    <a href="project2.html" class="back-link">← Back to Projects</a>
+    
+    <h1>Graphics Design</h1>
+    <p><strong>Creative Visual Solutions That Captivate and Communicate</strong></p>
+    
+    <img src="https://i.pinimg.com/1200x/bd/dd/2a/bddd2a086b0f4fedaf5fb5353aa70dd8.jpg" alt="Graphics Design">
+    
+    <div class="project-section overview-section">
+        <div class="overview-text">
+            <h2>Overview</h2>
+            <p>
+                Our graphics design services transform ideas into compelling visual narratives. We create stunning designs 
+                that communicate your brand message, engage your audience, and leave lasting impressions. From corporate 
+                branding to digital marketing assets, we elevate your brand identity through creative excellence.
+            </p>
+        </div>
+        <div class="overview-cards">
+            <div class="info-card">
+                <div class="icon">🎨</div>
+                <h3>Tools</h3>
+                <p>Adobe Suite, Figma, Sketch</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">⏱️</div>
+                <h3>Timeline</h3>
+                <p>Varied per project</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">👥</div>
+                <h3>Team</h3>
+                <p>Designers & illustrators</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-section">
+        <h2>Design Services</h2>
+        <p>
+            We offer comprehensive design solutions across multiple disciplines:
+        </p>
+        <ul class="features-list">
+            <li>Logo design and brand identity development</li>
+            <li>Print design (business cards, brochures, posters, packaging)</li>
+            <li>Digital design (social media graphics, web banners, digital ads)</li>
+            <li>Illustration and concept art</li>
+            <li>Motion graphics and animation</li>
+            <li>Infographics and data visualization</li>
+            <li>Packaging design</li>
+            <li>Environmental design and signage</li>
+        </ul>
+    </div>
+    
+    <div class="project-section">
+        <h2>Our Design Philosophy</h2>
+        <p>
+            We believe great design is more than aesthetics—it's about solving problems and telling stories. Our designs 
+            are strategically conceived to resonate with your target audience while maintaining brand consistency. We combine 
+            artistic creativity with strategic thinking to deliver designs that drive results.
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Design Process</h2>
+        <p>
+            <strong>Research & Discovery:</strong> Understanding your brand, audience, and objectives<br>
+            <strong>Concept Development:</strong> Creating multiple design directions<br>
+            <strong>Refinement:</strong> Iterating based on feedback<br>
+            <strong>Finalization:</strong> Delivering print-ready and digital files<br>
+            <strong>Support:</strong> Ongoing revisions and format adjustments
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Portfolio Highlights</h2>
+
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-number" data-target="500">0</div>
+                <div class="impact-label">Design Projects Completed</div>
+            </div>
+    
+            <div class="impact-card">
+                <div class="impact-number" data-target="50">0</div>
+                <div class="impact-label">Award-Winning Designs</div>
+            </div>
+    
+            <div class="impact-card">
+                <div class="impact-number" data-target="95">0</div>
+                <div class="impact-label">% Client Retention Rate</div>
+            </div>
+    
+            <div class="impact-card">
+                <div class="impact-number" data-target="100">0</div>
+                <div class="impact-label">Industry Sectors Served</div>
+            </div>
+        </div>
+        </div>
+    
+    <div class="project-section">
+        <h2>Tools & Technologies</h2>
+        <p>
+            Adobe Creative Suite (Photoshop, Illustrator, InDesign, After Effects)<br>
+            Figma, Sketch, Blender, Cinema 4D<br>
+            Hand-drawn illustrations and digital painting tools
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Why Choose Our Design Services</h2>
+        <p>
+            Our team brings a perfect blend of artistic talent and strategic thinking. We don't just create pretty designs—
+            we create designs that work. Every project is approached with fresh eyes and a commitment to excellence, ensuring 
+            your brand stands out in a crowded marketplace.
+        </p>
+    </div>
+</div>
+
+<!-- Orange Links Section -->
+<section class="orange-section">
+    <h2>Explore More Projects</h2>
+    <div class="links">
+        <a href="web-development.html">Web Development</a>
+        <a href="mobile-app.html">Mobile App Development</a>
+        <a href="iot-platforms.html">IoT Platforms</a>
+        <a href="saas-development.html">SaaS Development</a>
+        <a href="ui-ux-design.html">UI/UX Design</a>
+        
+    </div>
+</section>
+
+<!-- Footer -->
+<footer style="background: #f8f9fa; padding: 30px 20px; text-align: center; margin-top: 60px; color: #666;">
+    <p>&copy; 2026 Verdant Technologies. All rights reserved.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const banner = document.querySelector('.orange-section');
+        if (banner) {
+            setTimeout(() => {
+                banner.classList.add('visible');
+                banner.querySelectorAll('a').forEach((a, i) => {
+                    setTimeout(() => a.classList.add('visible'), i * 100);
+                });
+            }, 100);
+        }
+    });
+    // Animate success card metrics
+    function animateCounter(element, target) {
+        let current = 0;
+        const duration = 2000;
+        const startTime = Date.now();
+        
+        function update() {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            current = Math.floor(target * progress);
+            element.textContent = current.toLocaleString();
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = target.toLocaleString();
+            }
+        }
+        
+        update();
+    }
+    
+    // Trigger counter animation when cards appear
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.animated) {
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                animateCounter(entry.target, target);
+                entry.target.animated = true;
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.success-metric').forEach(card => {
+        observer.observe(card);
+    });
+
+    document.querySelectorAll('.impact-number').forEach(card => {
+        observer.observe(card);
+    });
+    
+    // Add hover glow effect to cards
+    document.querySelectorAll('.success-card').forEach(card => {
+        card.addEventListener('mouseenter', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const glow = document.createElement('div');
+            glow.style.position = 'absolute';
+            glow.style.left = x + 'px';
+            glow.style.top = y + 'px';
+            glow.style.width = '20px';
+            glow.style.height = '20px';
+            glow.style.background = 'radial-gradient(circle, rgba(34, 197, 94, 0.8), transparent)';
+            glow.style.borderRadius = '50%';
+            glow.style.pointerEvents = 'none';
+            glow.style.animation = 'glow-expand 0.6s ease-out';
+            glow.style.zIndex = '10';
+            
+            this.appendChild(glow);
+            
+            setTimeout(() => glow.remove(), 600);
+        });
+    });
+    
+    // Add glow expand animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes glow-expand {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+<script>
+    // Theme persistence across pages
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme on page load
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
+    
+    // Toggle theme on button click
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+        });
+    }
+</script>
+
+</body>
+
+</html>

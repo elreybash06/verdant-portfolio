@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IoT & Data Platforms - Verdant Technologies</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    .project-detail {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        margin-top: 80px;
+    }
+    
+    .project-detail h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .project-detail img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 30px 0;
+    }
+    
+    .project-detail p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #555;
+        margin: 20px 0;
+    }
+    
+    .project-section h2 {
+        font-size: 1.8em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .features-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .features-list li {
+        padding: 12px 0;
+        padding-left: 30px;
+        position: relative;
+        color: #555;
+        font-size: 1.05em;
+        line-height: 1.6;
+    }
+    
+    .features-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #22c55e;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 30px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-size: 1.05em;
+    }
+    
+    .back-link:hover {
+        text-decoration: underline;
+    }
+    
+    /* Success Stories Cards Styles */
+    .success-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+    
+    .success-card {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        padding: 35px 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+        border: 2px solid #22c55e;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .success-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .success-card:hover::before {
+        left: 100%;
+    }
+    
+    .success-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+        border-color: #16a34a;
+    }
+    
+    .success-icon {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .success-title {
+        font-size: 1.35em;
+        font-weight: 700;
+        color: #16a34a;
+        margin-bottom: 10px;
+    }
+    
+    .success-description {
+        font-size: 0.95em;
+        color: #555;
+        line-height: 1.6;
+        flex-grow: 1;
+    }
+    
+    .success-metric {
+        font-size: 1.8em;
+        font-weight: 900;
+        color: #22c55e;
+        margin-top: 15px;
+    }
+    
+    .success-card:hover .success-icon {
+        animation: bounce-icon 0.6s ease;
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    @keyframes bounce-icon {
+        0%, 100% {
+            transform: scale(1) translateY(0);
+        }
+        50% {
+            transform: scale(1.2) translateY(-5px);
+        }
+    }
+    
+    @keyframes slide-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .success-card {
+        animation: slide-in 0.6s ease forwards;
+    }
+    
+    .success-card:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+    
+    .success-card:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+    
+    .success-card:nth-child(4) {
+        animation-delay: 0.3s;
+    }
+    
+    /* Impact Cards Styles */
+    .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 30px 0;
+    }
+    
+    .impact-card {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        padding: 40px 25px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+        border: 2px solid #22c55e;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .impact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .impact-card:hover::before {
+        left: 100%;
+    }
+    
+    .impact-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(34, 197, 94, 0.35);
+        border-color: #16a34a;
+    }
+    
+    .impact-number {
+        font-size: 3.5em;
+        font-weight: 900;
+        color: #16a34a;
+        line-height: 1;
+        margin: 15px 0;
+        font-family: 'Arial', sans-serif;
+        letter-spacing: -2px;
+    }
+    
+    .impact-label {
+        font-size: 1em;
+        color: #333;
+        font-weight: 600;
+        margin-top: 15px;
+        line-height: 1.5;
+    }
+    
+    .impact-card:hover .impact-number {
+        animation: pulse-impact 0.6s ease;
+    }
+    
+    @keyframes pulse-impact {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.15);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">VerdantTech<span></span></div>
+
+    <nav>
+        <a href="project2.html">Home</a>
+        <a href="project2.html#services">Services</a>
+        <a href="project2.html#contact">Contact</a>
+        <button class="main-btn">Main Site</button>
+        <button class="theme-btn" id="themeToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </nav>
+</header>
+
+<!-- Project Detail Section -->
+<div class="project-detail">
+    <a href="project2.html" class="back-link">← Back to Projects</a>
+    
+    <h1>IoT & Data Platforms</h1>
+    <p><strong>IoT Data Management Solutions</strong></p>
+    
+    <img src="https://i.pinimg.com/1200x/df/5f/c1/df5fc1e693a5a491d64a75ecd769a73f.jpg" alt="IoT Platform">
+    
+    <div class="project-section overview-section">
+        <div class="overview-text">
+            <h2>Overview</h2>
+            <p>
+                Our IoT & Data Platforms represent the backbone of Industry 4.0, enabling seamless connectivity and 
+                intelligent data management across thousands of devices. We develop end-to-end IoT solutions that transform 
+                raw sensor data into actionable business intelligence, empowering organizations to optimize operations, 
+                reduce costs, and unlock new revenue streams.
+            </p>
+        </div>
+        <div class="overview-cards">
+            <div class="info-card">
+                <div class="icon">📡</div>
+                <h3>Tech Stack</h3>
+                <p>MQTT, Cloud analytics, Machine learning</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">⏱️</div>
+                <h3>Timeline</h3>
+                <p>1 year</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">👥</div>
+                <h3>Team</h3>
+                <p>8+ engineers</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-section">
+        <h2>Problem Statement</h2>
+        <p>
+            Organizations struggle with IoT implementation complexity, data silos, security vulnerabilities, and 
+            the inability to extract meaningful insights from massive amounts of sensor data. Existing solutions are 
+            fragmented, difficult to integrate, and require extensive technical expertise. This results in missed 
+            opportunities for operational efficiency and competitive advantage.
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Solution</h2>
+        <p>
+            We offer a comprehensive IoT platform that simplifies device connectivity, data collection, processing, 
+            and visualization. Our integrated solution includes:
+        </p>
+        <ul class="features-list">
+            <li>Scalable cloud infrastructure supporting millions of connected devices</li>
+            <li>Multi-protocol support (MQTT, CoAP, HTTP, Zigbee, LoRaWAN)</li>
+            <li>Advanced data processing and real-time analytics engine</li>
+            <li>Enterprise-grade security and encryption</li>
+            <li>Customizable dashboards and visualization tools</li>
+            <li>Machine learning models for predictive analytics</li>
+            <li>RESTful APIs for easy integration</li>
+            <li>Comprehensive monitoring and alerting system</li>
+        </ul>
+    </div>
+    
+    <div class="project-section">
+        <h2>Use Cases</h2>
+        <p>
+            <strong>Smart Manufacturing:</strong> Monitor production equipment, predict maintenance needs, and optimize production lines.<br><br>
+            <strong>Smart Buildings:</strong> Manage energy consumption, optimize HVAC systems, and enhance occupant comfort.<br><br>
+            <strong>Supply Chain:</strong> Track assets in real-time, monitor temperature/humidity conditions, and improve logistics efficiency.<br><br>
+            <strong>Healthcare:</strong> Monitor patient vital signs, track medical equipment, and improve facility management.
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Impact</h2>
+        
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-number" data-target="200">0</div>
+                <div class="impact-label">Enterprise Clients Powered</div>
+            </div>
+            
+            <div class="impact-card">
+                <div class="impact-number" data-target="50">0</div>
+                <div class="impact-label">Billion+ Data Points Processed Monthly</div>
+            </div>
+            
+            <div class="impact-card">
+                <div class="impact-number" data-target="40">0</div>
+                <div class="impact-label">% Average Cost Reduction for Clients</div>
+            </div>
+            
+            <div class="impact-card">
+                <div class="impact-number" data-target="99">0</div>
+                <div class="impact-label">% Uptime SLA Across Deployments</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-section">
+        <h2>Technology Architecture</h2>
+        <p>
+            Built on cloud-native microservices architecture, our platform leverages Kubernetes for orchestration, 
+            Apache Kafka for real-time data streaming, and advanced data lakes for storage and analytics. We employ 
+            cutting-edge machine learning frameworks to deliver intelligent insights and automation capabilities.
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Future Roadmap</h2>
+        <p>
+            We're investing in edge computing capabilities, expanding our AI/ML suite with advanced anomaly detection 
+            and predictive models, and developing industry-specific solutions. Our vision is to democratize IoT and 
+            data analytics, making sophisticated technology accessible to organizations of all sizes.
+        </p>
+    </div>
+</div>
+
+<!-- Orange Links Section -->
+<section class="orange-section">
+    <h2>Explore More Projects</h2>
+    <div class="links">
+        <a href="web-development.html">Web Development</a>
+        <a href="mobile-app.html">Mobile App Development</a>
+        <a href="graphics-design.html">Graphics Design</a>
+         <a href="saas-development.html">SaaS Development</a>
+        <a href="ui-ux-design.html">UI/UX Design</a>
+        
+    </div>
+</section>
+
+<!-- Footer -->
+<footer style="background: #f8f9fa; padding: 30px 20px; text-align: center; margin-top: 60px; color: #666;">
+    <p>&copy; 2026 Verdant Technologies. All rights reserved.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const banner = document.querySelector('.orange-section');
+        if (banner) {
+            setTimeout(() => {
+                banner.classList.add('visible');
+                banner.querySelectorAll('a').forEach((a, i) => {
+                    setTimeout(() => a.classList.add('visible'), i * 100);
+                });
+            }, 100);
+        }
+    });
+    // Animate success card metrics
+    function animateCounter(element, target) {
+        let current = 0;
+        const duration = 2000;
+        const startTime = Date.now();
+        
+        function update() {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            current = Math.floor(target * progress);
+            element.textContent = current.toLocaleString();
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = target.toLocaleString();
+            }
+        }
+        
+        update();
+    }
+    
+    // Trigger counter animation when cards appear
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.animated) {
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                animateCounter(entry.target, target);
+                entry.target.animated = true;
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.success-metric').forEach(card => {
+        observer.observe(card);
+    });
+    
+    document.querySelectorAll('.impact-number').forEach(card => {
+        observer.observe(card);
+    });
+    
+    // Add hover glow effect to cards
+    document.querySelectorAll('.success-card').forEach(card => {
+        card.addEventListener('mouseenter', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const glow = document.createElement('div');
+            glow.style.position = 'absolute';
+            glow.style.left = x + 'px';
+            glow.style.top = y + 'px';
+            glow.style.width = '20px';
+            glow.style.height = '20px';
+            glow.style.background = 'radial-gradient(circle, rgba(34, 197, 94, 0.8), transparent)';
+            glow.style.borderRadius = '50%';
+            glow.style.pointerEvents = 'none';
+            glow.style.animation = 'glow-expand 0.6s ease-out';
+            glow.style.zIndex = '10';
+            
+            this.appendChild(glow);
+            
+            setTimeout(() => glow.remove(), 600);
+        });
+    });
+    
+    // Add glow expand animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes glow-expand {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+<script>
+    // Theme persistence across pages
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme on page load
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
+    
+    // Toggle theme on button click
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+        });
+    }
+</script>
+
+</body>
+
+</html>

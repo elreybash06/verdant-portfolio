@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI/UX Design - Verdant Technologies</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    .project-detail {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        margin-top: 80px;
+    }
+    
+    .project-detail h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .project-detail img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 30px 0;
+    }
+    
+    .project-detail p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #555;
+        margin: 20px 0;
+    }
+    
+    .project-section h2 {
+        font-size: 1.8em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .features-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .features-list li {
+        padding: 12px 0;
+        padding-left: 30px;
+        position: relative;
+        color: #555;
+        font-size: 1.05em;
+        line-height: 1.6;
+    }
+    
+    .features-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #22c55e;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    
+    .back-link {
+        display: inline-block;
+        margin-bottom: 30px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-size: 1.05em;
+    }
+    
+    .back-link:hover {
+        text-decoration: underline;
+    }
+    
+    /* Flowchart Styles */
+    .flowchart-section {
+        margin-top: 60px;
+        padding: 40px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8f1f8 100%);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .flowchart-section h2 {
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 2em;
+    }
+    
+    .flowchart-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .process-step {
+        flex: 1;
+        min-width: 140px;
+        max-width: 160px;
+    }
+    
+    .step-card {
+        background: white;
+        padding: 30px 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid #e0e0e0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Color for each step */
+    .step-card[data-step="research"] {
+        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        border-color: #3b82f6;
+    }
+    
+    .step-card[data-step="strategy"] {
+        background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+        border-color: #a855f7;
+    }
+    
+    .step-card[data-step="design"] {
+        background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+        border-color: #ec4899;
+    }
+    
+    .step-card[data-step="testing"] {
+        background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+        border-color: #f97316;
+    }
+    
+    .step-card[data-step="iteration"] {
+        background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%);
+        border-color: #06b6d4;
+    }
+    
+    .step-card[data-step="handoff"] {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        border-color: #22c55e;
+    }
+    
+    .step-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .step-card:hover::before {
+        left: 100%;
+    }
+    
+    .step-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        border-color: #3b82f6;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    }
+    
+    .step-card[data-step="research"]:hover {
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        border-color: #3b82f6;
+    }
+    
+    .step-card[data-step="strategy"]:hover {
+        box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+        border-color: #a855f7;
+    }
+    
+    .step-card[data-step="design"]:hover {
+        box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+        border-color: #ec4899;
+    }
+    
+    .step-card[data-step="testing"]:hover {
+        box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+        border-color: #f97316;
+    }
+    
+    .step-card[data-step="iteration"]:hover {
+        box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
+        border-color: #06b6d4;
+    }
+    
+    .step-card[data-step="handoff"]:hover {
+        box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+        border-color: #22c55e;
+    }
+    
+    .step-number {
+        display: inline-flex;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        color: white;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        animation: pulse-ring 2s infinite;
+    }
+    
+    .step-card[data-step="research"] .step-number {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        animation: pulse-ring 2s infinite;
+    }
+    
+    .step-card[data-step="strategy"] .step-number {
+        background: linear-gradient(135deg, #a855f7, #9333ea);
+        animation: pulse-ring-purple 2s infinite;
+    }
+    
+    .step-card[data-step="design"] .step-number {
+        background: linear-gradient(135deg, #ec4899, #db2777);
+        animation: pulse-ring-pink 2s infinite;
+    }
+    
+    .step-card[data-step="testing"] .step-number {
+        background: linear-gradient(135deg, #f97316, #ea580c);
+        animation: pulse-ring-orange 2s infinite;
+    }
+    
+    .step-card[data-step="iteration"] .step-number {
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+        animation: pulse-ring-cyan 2s infinite;
+    }
+    
+    .step-card[data-step="handoff"] .step-number {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        animation: pulse-ring-green 2s infinite;
+    }
+    
+    .step-card:hover .step-number {
+        animation: bounce 0.6s ease;
+    }
+    
+    .step-title {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #333;
+        margin: 15px 0;
+    }
+    
+    .step-description {
+        font-size: 0.85em;
+        color: #666;
+        line-height: 1.5;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .step-card:hover .step-description {
+        opacity: 1;
+    }
+    
+    .arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #3b82f6;
+        font-size: 1.5em;
+        font-weight: bold;
+        animation: arrow-slide 1.5s infinite;
+    }
+    
+    @keyframes pulse-ring {
+        0% {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        }
+    }
+    
+    @keyframes pulse-ring-purple {
+        0% {
+            box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+        }
+    }
+    
+    @keyframes pulse-ring-pink {
+        0% {
+            box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(236, 72, 153, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(236, 72, 153, 0);
+        }
+    }
+    
+    @keyframes pulse-ring-orange {
+        0% {
+            box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+        }
+    }
+    
+    @keyframes pulse-ring-cyan {
+        0% {
+            box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(6, 182, 212, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(6, 182, 212, 0);
+        }
+    }
+    
+    @keyframes pulse-ring-green {
+        0% {
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+        }
+    }
+    
+    @keyframes bounce {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.15);
+        }
+    }
+    
+    @keyframes arrow-slide {
+        0%, 100% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(5px);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .flowchart-container {
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .arrow {
+            transform: rotate(90deg);
+            margin: 10px 0;
+        }
+    }
+    
+    /* Impact Cards Styles */
+    .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 30px 0;
+    }
+    
+    .impact-card {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        padding: 40px 25px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+        border: 2px solid #22c55e;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .impact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .impact-card:hover::before {
+        left: 100%;
+    }
+    
+    .impact-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(34, 197, 94, 0.35);
+        border-color: #16a34a;
+    }
+    
+    .impact-number {
+        font-size: 3.5em;
+        font-weight: 900;
+        color: #16a34a;
+        line-height: 1;
+        margin: 15px 0;
+        font-family: 'Arial', sans-serif;
+        letter-spacing: -2px;
+    }
+    
+    .impact-label {
+        font-size: 1em;
+        color: #333;
+        font-weight: 600;
+        margin-top: 15px;
+        line-height: 1.5;
+    }
+    
+    .impact-card:hover .impact-number {
+        animation: pulse-impact 0.6s ease;
+    }
+    
+    @keyframes pulse-impact {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.15);
+        }
+    }
+    
+    @keyframes count-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .impact-card {
+        animation: count-up 0.6s ease forwards;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">VerdantTech<span></span></div>
+
+    <nav>
+        <a href="project2.html">Home</a>
+        <a href="project2.html#services">Services</a>
+        <a href="project2.html#contact">Contact</a>
+        <button class="main-btn">Main Site</button>
+        <button class="theme-btn" id="themeToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </nav>
+</header>
+
+<!-- Project Detail Section -->
+<div class="project-detail">
+    <a href="project2.html" class="back-link">← Back to Projects</a>
+    
+    <h1>UI/UX Design</h1>
+    <p><strong>User Interfaces and Experiences That Engage and Delight</strong></p>
+    
+    <img src="https://i.pinimg.com/1200x/92/9a/ad/929aad3701c45056d2bcde66b5cb14c1.jpg" alt="UI/UX Design">
+    
+    <div class="project-section overview-section">
+        <div class="overview-text">
+            <h2>Overview</h2>
+            <p>
+                We craft user interfaces and experiences that are both visually beautiful and intuitively functional. 
+                Our UI/UX design process is rooted in user research, data-driven insights, and design best practices. 
+                We create digital products that users love to interact with, driving engagement, satisfaction, and loyalty.
+            </p>
+        </div>
+        <div class="overview-cards">
+            <div class="info-card">
+                <div class="icon">🖌️</div>
+                <h3>Tools</h3>
+                <p>Figma, Sketch, Adobe XD</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">⏱️</div>
+                <h3>Timeline</h3>
+                <p>3 months per project</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">👥</div>
+                <h3>Team</h3>
+                <p>UX researchers & designers</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-section">
+        <h2>Our Specialties</h2>
+        <p>
+            We offer comprehensive UI/UX design services across various digital platforms:
+        </p>
+        <ul class="features-list">
+            <li>User research and persona development</li>
+            <li>Information architecture and wireframing</li>
+            <li>Visual design and design systems</li>
+            <li>Interaction design and prototyping</li>
+            <li>Usability testing and user research</li>
+            <li>Website and web application design</li>
+            <li>Mobile app interface design</li>
+            <li>Accessibility design (WCAG compliance)</li>
+        </ul>
+    </div>
+    
+    <div class="project-section">
+        <h2>Design Thinking Approach</h2>
+        <p>
+            We believe exceptional user experience starts with deep understanding. We conduct thorough user research, 
+            create detailed personas, and develop empathy maps to understand your users' needs and pain points. This 
+            insight-driven approach ensures our designs solve real problems and deliver genuine value.
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Our Design Process</h2>
+        <p>
+            <strong>Research:</strong> Understand users through interviews, surveys, and analytics<br>
+            <strong>Strategy:</strong> Define objectives, user journeys, and design principles<br>
+            <strong>Design:</strong> Create wireframes, prototypes, and high-fidelity designs<br>
+            <strong>Testing:</strong> Validate designs through usability testing<br>
+            <strong>Iteration:</strong> Refine based on feedback and data<br>
+            <strong>Handoff:</strong> Provide detailed specifications for development
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Impact & Results</h2>
+        
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-number" data-target="200">0</div>
+                <div class="impact-label">Digital Products Designed & Deployed</div>
+            </div>
+            
+            <div class="impact-card">
+                <div class="impact-number" data-target="40">0</div>
+                <div class="impact-label">% Average Increase in User Engagement</div>
+            </div>
+            
+            <div class="impact-card">
+                <div class="impact-number" data-target="35">0</div>
+                <div class="impact-label">% Improvement in Conversion Rates</div>
+            </div>
+            
+            <div class="impact-card">
+                <div class="impact-number" data-target="90">0</div>
+                <div class="impact-label">Awards for Design Excellence</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-section">
+        <h2>Design Tools & Technologies</h2>
+        <p>
+            Figma, Sketch, Adobe XD, Protopie<br>
+            Principle, Framer, Marvel, InVision<br>
+            User testing platforms and analytics tools
+        </p>
+    </div>
+    
+    <div class="project-section">
+        <h2>Why Choose Our UX/UI Design</h2>
+        <p>
+            We combine artistic vision with scientific research to create designs that work. Every pixel is purposeful, 
+            every interaction is intuitive, and every design decision is backed by user insights. We're passionate about 
+            creating digital experiences that not only look beautiful but also perform exceptionally well.
+        </p>
+    </div>
+    
+    <!-- Flowchart Section -->
+    <div class="flowchart-section">
+        <h2>Our Design Process Journey</h2>
+        
+        <div class="flowchart-container">
+            <!-- Step 1: Research -->
+            <div class="process-step">
+                <div class="step-card" data-step="research">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Research</div>
+                    <div class="step-description">Understand users through interviews, surveys, and analytics</div>
+                </div>
+            </div>
+            
+            <div class="arrow">→</div>
+            
+            <!-- Step 2: Strategy -->
+            <div class="process-step">
+                <div class="step-card" data-step="strategy">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Strategy</div>
+                    <div class="step-description">Define objectives, user journeys, and design principles</div>
+                </div>
+            </div>
+            
+            <div class="arrow">→</div>
+            
+            <!-- Step 3: Design -->
+            <div class="process-step">
+                <div class="step-card" data-step="design">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Design</div>
+                    <div class="step-description">Create wireframes, prototypes, and high-fidelity designs</div>
+                </div>
+            </div>
+            
+            <div class="arrow">→</div>
+            
+            <!-- Step 4: Testing -->
+            <div class="process-step">
+                <div class="step-card" data-step="testing">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Testing</div>
+                    <div class="step-description">Validate designs through usability testing</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <div class="arrow" style="justify-content: center; transform: rotate(90deg); margin: 10px 0;">↓</div>
+        </div>
+        
+        <div class="flowchart-container">
+            <!-- Step 5: Iteration -->
+            <div class="process-step">
+                <div class="step-card" data-step="iteration">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Iteration</div>
+                    <div class="step-description">Refine based on feedback and data</div>
+                </div>
+            </div>
+            
+            <div class="arrow">→</div>
+            
+            <!-- Step 6: Handoff -->
+            <div class="process-step">
+                <div class="step-card" data-step="handoff">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Handoff</div>
+                    <div class="step-description">Provide detailed specifications for development</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Orange Links Section -->
+<section class="orange-section">
+    <h2>Explore More Projects</h2>
+    <div class="links">
+        <a href="web-development.html">Web Development</a>
+        <a href="mobile-app.html">Mobile App Development</a>
+        <a href="graphics-design.html">Graphics Design</a>
+        <a href="iot-platforms.html">IoT Platforms</a>
+        <a href="saas-development.html">SaaS Development</a>    
+    </div>
+</section>
+
+<!-- Footer -->
+<footer style="background: #f8f9fa; padding: 30px 20px; text-align: center; margin-top: 60px; color: #666;">
+    <p>&copy; 2026 Verdant Technologies. All rights reserved.</p>
+</footer>
+
+<script>
+    // Flowchart animation on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const stepCards = document.querySelectorAll('.step-card');
+        
+        // Stagger animation on load
+        stepCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 50);
+            }, index * 100);
+        });
+        
+        // Add click interactions
+        stepCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const step = this.getAttribute('data-step');
+                showStepDetail(step);
+            });
+        });
+        
+        // Animate arrows
+        animateArrows();
+    });
+    
+    function showStepDetail(step) {
+        const messages = {
+            research: 'Research Phase: We dig deep into user behavior, pain points, and motivations through comprehensive user interviews and data analysis.',
+            strategy: 'Strategy Phase: We synthesize insights and create a strategic roadmap with clear objectives and design principles.',
+            design: 'Design Phase: Our designers create wireframes, mockups, and interactive prototypes that bring the vision to life.',
+            testing: 'Testing Phase: We validate our designs with real users through usability testing sessions and gather valuable feedback.',
+            iteration: 'Iteration Phase: Based on feedback, we refine and improve the designs, ensuring they meet user needs perfectly.',
+            handoff: 'Handoff Phase: We provide developers with detailed specifications, design systems, and assets for seamless implementation.'
+        };
+        
+        alert(messages[step] || 'Click on a step to learn more!');
+    }
+    
+    function animateArrows() {
+        const flowchart = document.querySelector('.flowchart-section');
+        
+        // Observe when flowchart is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const arrows = flowchart.querySelectorAll('.arrow');
+                    arrows.forEach((arrow, index) => {
+                        arrow.style.animation = `arrow-slide 1.5s infinite ${index * 0.2}s`;
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(flowchart);
+    }
+    
+    // Add hover glow effect
+    document.querySelectorAll('.step-card').forEach(card => {
+        card.addEventListener('mouseenter', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const glow = document.createElement('div');
+            glow.style.position = 'absolute';
+            glow.style.left = x + 'px';
+            glow.style.top = y + 'px';
+            glow.style.width = '20px';
+            glow.style.height = '20px';
+            glow.style.background = 'radial-gradient(circle, rgba(59, 130, 246, 0.6), transparent)';
+            glow.style.borderRadius = '50%';
+            glow.style.pointerEvents = 'none';
+            glow.style.animation = 'glow-expand 0.6s ease-out';
+            
+            this.appendChild(glow);
+            
+            setTimeout(() => glow.remove(), 600);
+        });
+    });
+    
+    // Add glow expand animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes glow-expand {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Animate impact card numbers
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 60;
+        const duration = 2000;
+        const startTime = Date.now();
+        
+        function update() {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            current = Math.floor(target * progress);
+            element.textContent = current.toLocaleString();
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = target.toLocaleString();
+            }
+        }
+        
+        update();
+    }
+    
+    // Trigger counter animation when cards appear
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.animated) {
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                animateCounter(entry.target, target);
+                entry.target.animated = true;
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.impact-number').forEach(card => {
+        observer.observe(card);
+    });
+    
+    // Theme persistence across pages
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme on page load
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
+    
+    // Toggle theme on button click
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+        });
+    }
+</script>
+
+</body>
+
+</html>
