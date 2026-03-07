@@ -29,7 +29,13 @@ const createService = async (req, res, next) => {
 const deleteService = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id);
-    await serviceModel.removeById(id);
+    if (!Number.isInteger(id) || id <= 0) {
+      return res.status(400).json({ error: "Invalid service id" });
+    }
+    const deleted = await serviceModel.removeById(id);
+    if (!deleted) {
+      return res.status(404).json({ error: "Service not found" });
+    }
     res.json({ message: "Service deleted successfully" });
   } catch (error) {
     next(error);

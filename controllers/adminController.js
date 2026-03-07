@@ -5,8 +5,8 @@ const messageModel = require("../models/messageModel");
 const renderDashboard = async (req, res, next) => {
   try {
     const [services, projects, messages] = await Promise.all([serviceModel.getAll(), projectModel.getAll(), messageModel.getAll()]);
-    res.render("admin/dashboard", {
-      title: "Admin Dashboard",
+    res.json({
+      message: "Admin dashboard data",
       stats: { services: services.length, projects: projects.length, messages: messages.length },
       recentMessages: messages.slice(0, 5),
       recentServices: services.slice(0, 5),
@@ -15,8 +15,14 @@ const renderDashboard = async (req, res, next) => {
   } catch (e) { next(e); }
 };
 
-const renderAdminServices = async (req, res, next) => { try { res.render("admin/services", { title: "Manage Services", services: await serviceModel.getAll() }); } catch (e) { next(e); } };
-const renderAdminProjects = async (req, res, next) => { try { res.render("admin/projects", { title: "Manage Projects", projects: await projectModel.getAll() }); } catch (e) { next(e); } };
-const renderAdminMessages = async (req, res, next) => { try { res.render("admin/messages", { title: "Contact Messages", messages: await messageModel.getAll() }); } catch (e) { next(e); } };
+const renderAdminServices = async (req, res, next) => {
+  try { res.json(await serviceModel.getAll()); } catch (e) { next(e); }
+};
+const renderAdminProjects = async (req, res, next) => {
+  try { res.json(await projectModel.getAll()); } catch (e) { next(e); }
+};
+const renderAdminMessages = async (req, res, next) => {
+  try { res.json(await messageModel.getAll()); } catch (e) { next(e); }
+};
 
 module.exports = { renderDashboard, renderAdminServices, renderAdminProjects, renderAdminMessages };

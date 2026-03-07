@@ -1,0 +1,10 @@
+const express = require("express");
+const router = express.Router();
+const c = require("../../controllers/pageController");
+router.get("/", c.renderHome);
+router.get("/about", c.renderAbout);
+router.get("/services", c.renderServices);
+router.get("/projects", c.renderProjects);
+router.get("/projects/:id", c.renderProjectDetail);
+router.get("/contact", c.renderContact);
+module.exports = router;
